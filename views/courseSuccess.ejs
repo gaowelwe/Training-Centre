@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+
+    <div class="success-page">
+
+        <div class="success-card">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h1 class="success-title">
+                Course Created Successfully
+            </h1>
+
+            <p class="success-subtitle">
+                The course has been added to the training system and is now available.
+            </p>
+
+            <div class="course-details">
+
+                <div class="detail-row">
+                    <span class="label">Course Name</span>
+                    <span class="value"><%= course.name %></span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="label">Course Fee</span>
+                    <span class="value">R<%= course.fee %></span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="label">Category</span>
+                    <span class="value"><%= course.category %></span>
+                </div>
+
+                <div class="detail-row highlight">
+                    <span class="label">Discounted Fee (10% Off)</span>
+                    <span class="value">R<%= discountedFee %></span>
+                </div>
+
+            </div>
+
+            <div class="success-actions">
+                <a href="/courses" class="btn-primary">
+                    View All Courses
+                </a>
+
+                <a href="/courses/create" class="btn-secondary">
+                    Add Another Course
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

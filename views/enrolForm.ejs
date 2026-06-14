@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+
+<body>
+
+    <div class="course-form-page">
+
+        <div class="course-form-card">
+
+            <div class="form-header">
+                <h1>Enrol in <%= course.name %></h1>
+                <p>Complete the form below to enrol in this course.</p>
+            </div>
+
+            <form action="/courses/enrol/<%= course.id %>" method="POST" class="modern-course-form">
+
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+
+                    <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        placeholder="Enter your first name"
+                        value="<%= oldInput.firstName || '' %>"
+                        class="<%= errors.some(e => e.includes('First name')) ? 'input-error' : '' %>">
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+
+                    <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        placeholder="Enter your last name"
+                        value="<%= oldInput.lastName || '' %>"
+                        class="<%= errors.some(e => e.includes('Last name')) ? 'input-error' : '' %>">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email address"
+                        value="<%= oldInput.email || '' %>"
+                        class="<%= errors.some(e => e.includes('Email')) ? 'input-error' : '' %>">
+                </div>
+
+                <div class="form-group">
+                    <label>Course Fee</label>
+                    <p class="course-fee-display">R<%= course.fee %></p>
+                </div>
+
+                <button type="submit" class="submit-course-btn">
+                    Enrol Now
+                </button>
+
+            </form>
+
+            <% if (errors.length > 0) { %>
+
+                <div class="validation-card">
+
+                    <h3>Please fix the following:</h3>
+
+                    <ul>
+                        <% errors.forEach(error => { %>
+                            <li><%= error %></li>
+                        <% }) %>
+                    </ul>
+
+                </div>
+
+            <% } %>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

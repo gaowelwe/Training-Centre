@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+
+  <div class="home-container">
+    <h1>Community Skills Training Centre</h1>
+
+    <p>Welcome to the training centre management system.</p>
+    <p>Use the navigation menu to view available courses.</p>
+
+    <hr>
+
+    <div class="responsive-container">
+      <div class="box">
+        <h3>Available Courses</h3>
+        <p>Browse the training courses currently offered by the centre.</p>
+      </div>
+
+      <div class="box">
+        <h3>Student Enrolments</h3>
+        <p>Students can view and manage the courses they are enrolled in.</p>
+      </div>
+
+      <div class="box">
+        <h3>Trainer Dashboard</h3>
+        <p>Trainers can access class lists and course schedules.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+  $(document).ready(function() {
+    $.ajax({
+      url: "/api/courses",   
+      method: "GET",     
+      success: function(data) {
+        console.log("Courses loaded:", data);
+
+        $("#courseList").empty();
+        data.forEach(course => {
+          $("#courseList").append("<li>" + course.name + "</li>");
+        });
+      },
+      error: function(xhr, status, error) {
+        console.error("Unable to load course data.");
+        console.error("Status:", status);
+        console.error("Error:", error);
+
+        $("#courseList").append("<li>Error loading courses</li>");
+      }
+    });
+  });
+</script>
+
+  <ul id="courseList"></ul>
+
+</body>
+</html>
